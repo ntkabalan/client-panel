@@ -19,7 +19,7 @@ export class ClientService {
   }
 
   getClients(): Observable<Client[]> {
-    // Get clients, with IDs
+    // Get clients with IDs from Firebase
     this.clients = this.clientsCollection.snapshotChanges().map(changes => {
       return changes.map(action => {
         const data = action.payload.doc.data() as Client;
