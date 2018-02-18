@@ -30,6 +30,21 @@ export class ClientService {
     return this.clients;
   }
 
+  getClientById(id: string): Observable<Client> {
+    // Get specific client by ID
+    this.clientDoc = this.afs.doc<Client>(`clients/${id}`);
+    this.client = this.clientDoc.snapshotChanges().map(action => {
+      if (!action.payload.exists) {
+        return null;
+      } else {
+        const data = action.payload.data() as Client;
+        data.id = action.payload.id;
+        return data;
+      }
+    });
+    return this.client;
+  }
+
   addClient(newClient: Client): void {
     this.clientsCollection.add(newClient);
   }
