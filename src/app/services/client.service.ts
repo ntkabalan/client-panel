@@ -30,4 +30,8 @@ export class ClientService {
     return this.clients;
   }
 
+  addClient(newClient: Client): void {
+    this.clientsCollection.add(newClient);
+  }
+
 }
