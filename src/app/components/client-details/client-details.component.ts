@@ -39,4 +39,11 @@ export class ClientDetailsComponent implements OnInit {
     });
   }
 
+  onDeleteClick(id: string) {
+    if (confirm('Are you sure you want to delete this client?')) {
+      this.clientService.deleteClient(id);
+      this.router.navigate(['/']);
+    }
+  }
+
 }

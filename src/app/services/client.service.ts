@@ -49,4 +49,8 @@ export class ClientService {
     this.clientsCollection.add(newClient);
   }
 
+  deleteClient(id: string) {
+    this.clientDoc.delete();
+  }
+
 }
