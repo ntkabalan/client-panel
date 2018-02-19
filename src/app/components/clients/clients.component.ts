@@ -23,9 +23,9 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  private updateTotalOwed(): void {
+  updateTotalOwed(): void {
     this.totalOwed = this.clients.reduce((total, client) => {
-      return total + client.balance;
+      return total + parseFloat(client.balance.toString());
     }, 0);
   }
 
