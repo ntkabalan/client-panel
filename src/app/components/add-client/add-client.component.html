@@ -86,10 +86,10 @@
           minlength="10"
           required
         >
-        <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">
-          Email field required
+        <div [hidden]="!clientPhone.errors?.required" class="invalid-feedback">
+          Phone number field required
         </div>
-        <div [hidden]="!clientEmail.errors?.minlength" class="invalid-feedback">
+        <div [hidden]="!clientPhone.errors?.minlength" class="invalid-feedback">
           Please supply a valid phone number
         </div>
       </div>
@@ -102,7 +102,7 @@
           class="form-control"
           name="balance"
           #clientBalance="ngModel"
-          [ngClass]="{ 'is-invalid': clientPhone.errors && clientPhone.touched }"
+          [ngClass]="{ 'is-invalid': clientBalance.errors && clientBalance.touched }"
           [(ngModel)]="newClient.balance"
           required
           [disabled]="this.disableBalanceOnAdd"

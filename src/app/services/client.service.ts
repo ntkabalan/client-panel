@@ -54,7 +54,8 @@ export class ClientService {
     this.clientDoc.update(client);
   }
 
-  deleteClient(id: string): void {
+  deleteClient(client: Client): void {
+    this.clientDoc = this.afs.doc<Client>(`clients/${client.id}`);
     this.clientDoc.delete();
   }
 
