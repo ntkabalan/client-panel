@@ -29,6 +29,7 @@ import { EditClientComponent } from './components/edit-client/edit-client.compon
 
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
+import { SettingsService } from './services/settings.service';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { AuthService } from './services/auth.service';
   providers: [
     ClientService,
     AuthService,
+    SettingsService
   ],
   bootstrap: [AppComponent]
 })

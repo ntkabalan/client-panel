@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ClientService } from '../../services/client.service';
+import { SettingsService } from '../../services/settings.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { Client } from '../../models/Client';
@@ -14,14 +15,22 @@ import { Client } from '../../models/Client';
 export class EditClientComponent implements OnInit {
   private id: string;
   private client: Client;
-  private disableBalance: boolean;
+  private disableBalanceOnEdit: boolean;
 
   constructor(
     private clientService: ClientService,
+    private settingsService: SettingsService,
     private router: Router,
     private route: ActivatedRoute,
     private flashMessagesService: FlashMessagesService
-  ) {
+  ) { }
+
+  ngOnInit() {
+    // Get ID from URL
+    this.id = this.route.snapshot.params['id'];
+    // Get client
+    this.clientService.getClientById(this.id).subscribe(client => this.client = client);
+    // Set placeholder client values
     this.client = {
       firstName: '',
       lastName: '',
@@ -29,14 +38,7 @@ export class EditClientComponent implements OnInit {
       phone: '',
       balance: 0
     }
-    this.disableBalance = true;
-  }
-
-  ngOnInit() {
-    // Get ID from URL
-    this.id = this.route.snapshot.params['id'];
-    // Get client
-    this.clientService.getClientById(this.id).subscribe(client => this.client = client);
+    this.disableBalanceOnEdit = this.settingsService.getSettings().disableBalanceOnEdit;
   }
 
   onSubmit({ value, valid }: { value: Client, valid: boolean }): void {

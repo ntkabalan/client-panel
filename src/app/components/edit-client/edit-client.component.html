@@ -105,7 +105,7 @@
           [ngClass]="{ 'is-invalid': clientBalance.errors && clientBalance.touched }"
           [(ngModel)]="client.balance"
           required
-          [disabled]="this.disableBalanceOnAdd"
+          [disabled]="this.disableBalanceOnEdit"
         >
       </div>
 
