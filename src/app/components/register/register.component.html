@@ -1,3 +1,66 @@
-<p>
-  register works!
-</p>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center pb-3">
+          <span class="text-primary"><i class="fa fa-lock"></i> ClientPanel</span> Register
+        </h1>
+        <form (submit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              #userEmail="ngModel"
+              [ngClass]="{ 'is-invalid': userEmail.errors && userEmail.touched }"
+              [(ngModel)]="email"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              required
+            >
+            <div [hidden]="!userEmail.errors?.required" class="invalid-feedback">
+              Email field required
+            </div>
+            <div [hidden]="!userEmail.errors?.pattern" class="invalid-feedback">
+              Please supply a valid email address
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              class="form-control"
+              type="password"
+              name="password"
+              #userPassword="ngModel"
+              [ngClass]="{ 'is-invalid': userPassword.errors && userPassword.touched }"
+              [(ngModel)]="password"
+              required
+            >
+            <div [hidden]="!userPassword.errors?.required" class="invalid-feedback">
+              Password field is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input
+              class="form-control"
+              type="password"
+              name="confirmPassword"
+              #confirmUserPassword="ngModel"
+              [ngClass]="{ 'is-invalid': confirmUserPassword.errors && confirmUserPassword.touched }"
+              [(ngModel)]="confirmPassword"
+              required
+            >
+            <div [hidden]="!confirmUserPassword.errors?.required" class="invalid-feedback">
+              Password confirmation field is required
+            </div>
+          </div>
+
+          <input class="btn btn-primary btn-block" type="submit" value="Register">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
